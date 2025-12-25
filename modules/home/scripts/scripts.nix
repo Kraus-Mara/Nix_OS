@@ -45,7 +45,6 @@ in
     wallpaper-picker
     random-wallpaper
 
-    runbg
     music
     lofi
 
@@ -58,14 +57,6 @@ in
 
     compress
     extract
-
-    show-keybinds
-
-    vm-start
-
-    ascii
-
-    record
 
     screenshot
 
