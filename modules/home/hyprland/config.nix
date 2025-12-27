@@ -38,7 +38,6 @@
         border_size = 1;
         "col.active_border" = "rgb(D5D5D5)";
         "col.inactive_border" = "0x00000000";
-        no_border_on_floating = false;
       };
 
       misc = {
@@ -49,7 +48,7 @@
         animate_manual_resizes = false;
         enable_swallow = true;
         focus_on_activate = true;
-        new_window_takes_over_fullscreen = 2;
+        # new_window_takes_over_fullscreen = 2;
         middle_click_paste = false;
       };
 
@@ -181,10 +180,10 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, left, movewindow, l"
-        "$mainMod SHIFT, right, movewindow, r"
-        "$mainMod SHIFT, up, movewindow, u"
-        "$mainMod SHIFT, down, movewindow, d"
+        "$mainMod SHIFT, left, movewindow, left"
+        "$mainMod SHIFT, right, movewindow, right"
+        "$mainMod SHIFT, up, movewindow, up"
+        "$mainMod SHIFT, down, movewindow, down"
 
         "$mainMod CTRL, left, resizeactive, -80 0"
         "$mainMod CTRL, right, resizeactive, 80 0"
@@ -214,7 +213,7 @@
       ];
 
       # windowrule
-      windowrule = [
+      windowrulev2 = [
         "float,class:^(Viewnior)$"
         "float,class:^(imv)$"
         "float,class:^(mpv)$"
@@ -232,11 +231,11 @@
         "size 700 450,title:^(Volume Control)$"
         "move 40 55%,title:^(Volume Control)$"
 
-        "float, title:^(Picture-in-Picture)$"
-        "float, title: ^(Input)$"
-        "float, title: 'Input'"
+        "float,title:^(Picture-in-Picture)$"
+        "float,title: ^(Input)$"
+        "float,title: 'Input'"
         "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
+        "pin,title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
         "opacity 1.0 override 1.0 override, class:(Aseprite)"
