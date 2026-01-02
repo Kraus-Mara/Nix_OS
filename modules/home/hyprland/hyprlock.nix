@@ -1,96 +1,112 @@
-{ pkgs, host, ... }:
-let
-  text = "rgb(251, 241, 199)";
-in
+{ host, ... }:
 {
-  home.packages = [ pkgs.hyprlock ];
-  xdg.configFile."hypr/hyprlock.conf".text = ''
-    # GENERAL
-    general {
-      toggle_blur = true
-      hide_cursor = false
-      no_fade_in = false
-      grace = 0
-      disable_loading_bar = true
-      ignore_empty_input = true
-      fractional_scaling = 0
-    }
+  programs.hyprlock = {
+    enable = true;
 
-    # Time
-    label {
-      monitor = 
-      text = cmd[update:1000] echo "$(date +"%k:%M")"
-      color = rgba(235, 219, 178, .9)
-      font_size = 115
-      font_family = Fira Mono Bold
-      shadow_passes = 3
-      position = 0, ${if (host == "laptop") then "-150" else "-150"}
-      halign = center
-      valign = top
-    }
+    settings = {
+      general = {
+        hide_cursor = true;
+        ignore_empty_input = true;
+        fractional_scaling = 0;
+      };
 
-    # Day
-    label {
-      monitor =
-      text = cmd[update:1000] echo "- $(date +"%A, %B %d") -"
-      color = rgba(235, 219, 178, .9)
-      font_size = 18
-      font_family = Fira Mono
-      shadow_passes = 3
-      position = 0, ${if (host == "laptop") then "-350" else "-350"}
-      halign = center
-      valign = top
-    }
+      background = [
+        {
+          path = "/home/kraus/Pictures/wallpapers/others/_Purple Anime City Desktop Wallpaper.png";
 
+          color = "rgba(29, 32, 33, 255)";
+          blur_passes = 2;
+          vibrancy_darkness = 0.0;
+        }
+      ];
 
-    # USER-BOX
-    shape {
-      monitor =
-      size = 500, 90
-      color = rgba(102, 92, 84, .33)
-      rounding = 10
-      border_size = 0
-      border_color = rgba(255, 255, 255, 0)
-      rotate = 0
+      shape = [
+        # User box
+        {
+          size = "300, 50";
 
-      position = 0, ${if (host == "laptop") then "270" else "270"}
-      halign = center
-      valign = bottom
-    }
+          rounding = 0;
+          border_size = 2;
+          color = "rgba(102, 92, 84, 0.33)";
+          border_color = "rgba(168, 153, 132, 0.95)";
 
-    # USER
-    label {
-      monitor =
-      text =   $USER
-      color = rgba(235, 219, 178, 1)
-      font_size = 25
-      font_family = Fira Mono Bold
-      position = 0, ${if (host == "laptop") then "301" else "281"}
-      halign = center
-      valign = bottom
-    }
+          position = "0, 120";
+          halign = "center";
+          valign = "bottom";
+        }
+      ];
 
-    # INPUT FIELD
-    input-field {
-      monitor =
-      size = 500, 90
-      outline_thickness = 1
-      rounding = 10
-      dots_size = 0.25 # Scale of input-field height, 0.2 - 0.8
-      dots_spacing = 0.4 # Scale of dots' absolute size, 0.0 - 1.0
-      dots_center = true
-      outer_color = rgba(102, 92, 84, .33)
-      inner_color = rgba(102, 92, 84, .33)
-      color = rgba(235, 219, 178, .9)
-      font_color = rgba(235, 219, 178, .9)
-      font_size = 14
-      font_family = Fira Mono Bold
-      fade_on_empty = false
-      placeholder_text = <i><span foreground="##fbf1c7">Enter Password</span></i>
-      hide_input = false
-      position = 0, ${if (host == "laptop") then "200" else "200"}
-      halign = center
-      valign = bottom
-    }
-  '';
+      label = [
+        # Time
+        {
+          text = ''cmd[update:1000] echo "$(date +'%k:%M')"'';
+
+          font_size = 115;
+          font_family = "Fira Mono Bold";
+
+          shadow_passes = 3;
+          color = "rgba(235, 219, 178, 0.9)";
+
+          position = "0, -25";
+          halign = "center";
+          valign = "top";
+        }
+        # Date
+        {
+          text = ''cmd[update:1000] echo "- $(date +'%A, %B %d') -" '';
+
+          font_size = 18;
+          font_family = "Fira Mono";
+
+          shadow_passes = 3;
+          color = "rgba(235, 219, 178, 0.9)";
+
+          position = "0, -225";
+          halign = "center";
+          valign = "top";
+        }
+        # Username
+        {
+          text = "  $USER";
+
+          font_size = 15;
+          font_family = "Fira Mono Bold";
+
+          color = "rgba(235, 219, 178, 1)";
+
+          position = "0, 134";
+          halign = "center";
+          valign = "bottom";
+        }
+      ];
+
+      input-field = [
+        {
+          size = "300, 50";
+          rounding = 0;
+          outline_thickness = 2;
+
+          dots_spacing = 0.4;
+
+          font_color = "rgba(235, 219, 178, 0.9)";
+          font_family = "Fira Mono Bold";
+
+          outer_color = "rgba(168, 153, 132, 0.95)";
+          inner_color = "rgba(102, 92, 84, 0.33)";
+          check_color = "rgba(152, 151, 26, 0.95)";
+          fail_color = "rgba(204, 36, 29, 0.95)";
+          capslock_color = "rgba(215, 153, 33, 0.95)";
+          bothlock_color = "rgba(215, 153, 33, 0.95)";
+
+          hide_input = false;
+          fade_on_empty = false;
+          placeholder_text = ''<i><span foreground="##fbf1c7">Mot de passe</span></i>'';
+
+          position = "0, 50";
+          halign = "center";
+          valign = "bottom";
+        }
+      ];
+    };
+  };
 }

@@ -2,7 +2,7 @@
 let
   custom = {
     font = "Fira Mono Nerd Font";
-    font_size = "14px";
+    font_size = "25px";
     text_color = "#cdd6f4";
     background_0 = "#181825";
     border_color = "#373737";
@@ -100,7 +100,7 @@ in
 
     #custom-launcher {
       background: ${background_0};
-      font-size: 20px;
+      font-size: 30px;
       color: ${text_color};
       font-weight: bold;
       padding-left: 6px;

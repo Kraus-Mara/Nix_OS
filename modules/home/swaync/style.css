@@ -17,11 +17,8 @@
 * {
     font-family: "Fira Mono Nerd Font";
     background-clip: border-box;
+    background: transparent;
 }
-
-/* #notifications_box { */
-/*   border: solid 4px red; */
-/* } */
 
 label {
     color: @text;
@@ -383,6 +380,7 @@ label {
     padding-bottom: 35px;
     padding-top: 35px;
     margin-bottom: -33px;
+    background: transparent;
 }
 
 .widget-mpris>box {
@@ -390,7 +388,7 @@ label {
     margin: -5px 0px -10px 0px;
     padding: 0px;
     border-radius: 4px;
-    /* background: alpha(currentColor, 0.05); */
+    background: alpha(currentColor, 0.05);
     background: @mantle;
 }
 

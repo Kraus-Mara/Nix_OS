@@ -2,12 +2,15 @@
   description = "Kraus-Mara NixOS Configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nur.url = "github:nix-community/NUR";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # flake-parts.url = "github:hercules-ci/flake-parts";
+    #
+    # quickshell = {
+    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";

@@ -59,6 +59,14 @@ in
     compress
     extract
 
+    show-keybinds
+
+    vm-start
+
+    ascii
+
+    record
+
     screenshot
 
     rofi-power-menu

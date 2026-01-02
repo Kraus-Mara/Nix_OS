@@ -1,8 +1,7 @@
-{ host, ... }:
+{ ... }:
 let
   custom = {
     font = "Fira Mono Nerd Font";
-    font_size = "15px";
     font_weight = "bold";
     text_color = "#D5D5D5";
     background_0 = "#1D2021";
@@ -27,8 +26,9 @@ let
 in
 {
   programs.waybar.settings.mainBar = with custom; {
+
     position = "top";
-    height = 15;
+    height = 40;
     margin-top = 2;
     margin-bottom = 2;
     margin-left = 2;
@@ -48,7 +48,7 @@ in
       "custom/notification"
     ];
     clock = {
-      format = "<span foreground='${clock_color}'></span>  {:%H:%M}";
+      format = "<span foreground='${clock_color}'></span> {:%H:%M}";
     };
     "hyprland/workspaces" = {
       active-only = false;
@@ -80,24 +80,18 @@ in
       format = "<span foreground='${cpu_color}'> </span> {usage}%";
       format-alt = "<span foreground='${cpu_color}'> </span> {avg_frequency} GHz";
       interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      on-click-right = "hyprctl dispatch exec '[float; center] kitty --title float_kitty btop'";
     };
     memory = {
       format = "<span foreground='${mem_color}'>󰟜 </span>{}%";
       format-alt = "<span foreground='${mem_color}'>󰟜 </span>{used} GiB";
       interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
-    };
-    disk = {
-      # path = "/";
-      format = "<span foreground='${disk_color}'>󰋊 </span>{percentage_used}%";
-      interval = 60;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      on-click-right = "hyprctl dispatch exec '[float; center] kitty --title float_kitty btop'";
     };
     tray = {
       format = "<span foreground='${tray_color}'>{icon}</span> {}";
-      icon-size = 16;
-      spacing = 8;
+      icon-size = 30;
+      spacing = 12;
     };
     pulseaudio = {
       format = "{icon} {volume}%";
@@ -135,7 +129,7 @@ in
       format-en = "US";
     };
     "custom/launcher" = {
-      format = "<span foreground='${yellow}'></span>";
+      format = "<span foreground='${yellow}'> </span>";
       on-click = "random-wallpaper";
       on-click-right = "rofi -show drun";
       tooltip = "true";

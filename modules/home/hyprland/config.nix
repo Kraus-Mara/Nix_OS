@@ -33,9 +33,9 @@
       general = {
         "$mainMod" = "SUPER";
         layout = "dwindle";
-        gaps_in = 2;
+        gaps_in = 5;
         gaps_out = 4;
-        border_size = 1;
+        border_size = 5;
         "col.active_border" = "rgb(D5D5D5)";
         "col.inactive_border" = "0x00000000";
       };
@@ -136,14 +136,14 @@
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, exec, toggle_float"
         "$mainMod, D, exec, rofi -show drun || pkill rofi"
-        "$mainMod SHIFT, D, exec, webcord --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "$mainMod SHIFT, V, exec, [workspace 4 silent] vesktop"
         "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'"
         "ALT, Escape, exec, swaylock"
         "$mainMod, Escape, exec, power-menu || pkill power-menu"
         "$mainMod, P, pseudo,"
         "$mainMod, X, togglesplit,"
         "$mainMod, T, exec, toggle_oppacity"
-        "$mainMod, E, exec, nemo"
+        "$mainMod, E, exec, [float; size 1000 700; center] nemo"
         "$mainMod SHIFT, B, exec, toggle_waybar"
         "$mainMod, C ,exec, hyprpicker -a"
         "$mainMod, W,exec, wallpaper-picker"
@@ -163,11 +163,6 @@
         "ALT SHIFT, TAB, movefocus, l"
         "ALT, TAB, movefocus, r"
 
-        "$mainMod, left,  alterzorder, top"
-        "$mainMod, right, alterzorder, top"
-        "$mainMod, up,    alterzorder, top"
-        "$mainMod, down,  alterzorder, top"
-
         "CTRL ALT, up, exec, hyprctl dispatch focuswindow floating"
         "CTRL ALT, down, exec, hyprctl dispatch focuswindow tiled"
 
@@ -180,10 +175,10 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, left, movewindow, left"
-        "$mainMod SHIFT, right, movewindow, right"
-        "$mainMod SHIFT, up, movewindow, up"
-        "$mainMod SHIFT, down, movewindow, down"
+        "$mainMod SHIFT, left, movewindow, l"
+        "$mainMod SHIFT, right, movewindow, r"
+        "$mainMod SHIFT, up, movewindow, u"
+        "$mainMod SHIFT, down, movewindow, d"
 
         "$mainMod CTRL, left, resizeactive, -80 0"
         "$mainMod CTRL, right, resizeactive, 80 0"
@@ -195,15 +190,6 @@
         "$mainMod ALT, up, moveactive, 0 -80"
         "$mainMod ALT, down, moveactive, 0 80"
 
-        # media and volume controls
-        ",XF86AudioPlay,exec, playerctl play-pause"
-        ",XF86AudioNext,exec, playerctl next"
-        ",XF86AudioPrev,exec, playerctl previous"
-        ",XF86AudioStop,exec, playerctl stop"
-
-        "$mainMod, mouse_down, workspace, e-1"
-        "$mainMod, mouse_up, workspace, e+1"
-
       ];
 
       # mouse binding
@@ -214,58 +200,46 @@
 
       # windowrule
       windowrulev2 = [
-        "float,class:^(Viewnior)$"
+
+        "float, class:^(nemo)$, title:^(nemo)$"
+        "move 50% 50%,title:^(nemo)$"
+
         "float,class:^(imv)$"
         "float,class:^(mpv)$"
-        "tile,class:^(Aseprite)$"
-        "float,class:^(Audacious)$"
-        "pin,class:^(rofi)$"
-        "pin,class:^(waypaper)$"
-        # "idleinhibit focus,mpv"
-        # "float,udiskie"
-        "float,title:^(Transmission)$"
+
+        "pin,class:^(rofi)$, title:^(rofi)$"
+        "pin,class:^(waypaper)$, title:^(waypaper)$"
+
         "float,title:^(Volume Control)$"
-        "float,title:^(brave)$"
-        "size 700 450,title:^(brave)$"
-        "move 0 0,title:^(brave)$"
+
         "size 700 450,title:^(Volume Control)$"
         "move 40 55%,title:^(Volume Control)$"
 
         "float,title:^(Picture-in-Picture)$"
-        "float,title: ^(Input)$"
-        "float,title: 'Input'"
+        "float,title:^(Input)$"
+        "float,title:^(Input)$"
         "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
         "pin,title:^(Picture-in-Picture)$"
+
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        "opacity 1.0 override 1.0 override, class:(Aseprite)"
-        "opacity 1.0 override 1.0 override, class:(Unity)"
-        "opacity 1.0 override 1.0 override, class:(zen)"
-        "opacity 1.0 override 1.0 override, class:(evince)"
-        "workspace 1, class:^(zen)$"
-        "workspace 3, class:^(evince)$"
-        "workspace 4, class:^(Gimp-2.10)$"
-        "workspace 4, class:^(Aseprite)$"
-        "workspace 5, class:^(Audacious)$"
+
         "workspace 5, class:^(Spotify)$"
-        "workspace 8, class:^(com.obsproject.Studio)$"
-        "workspace 10, class:^(discord)$"
-        "workspace 10, class:^(WebCord)$"
+
         "idleinhibit focus, class:^(mpv)$"
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "float,class:^(org.gnome.Calculator)$"
+
         "float,class:^(waypaper)$"
-        "float,class:^(zenity)$"
-        "size 850 500,class:^(zenity)$"
         "size 725 330,class:^(SoundWireServer)$"
+
         "float,class:^(org.gnome.FileRoller)$"
+        "size 700 400,class:^(org.gnome.FileRoller)$"
+
         "float,class:^(org.pulseaudio.pavucontrol)$"
         "float,class:^(SoundWireServer)$"
-        "float,class:^(.sameboy-wrapped)$"
         "float,class:^(file_progress)$"
         "float,class:^(confirm)$"
         "float,class:^(dialog)$"
-        "float,class:^(download)$"
+        "float, center, class:^(download)$"
         "float,class:^(notification)$"
         "float,class:^(error)$"
         "float,class:^(confirmreset)$"
@@ -282,31 +256,26 @@
         "noblur,class:^(xwaylandvideobridge)$"
 
         # borders when only
-        "bordersize 2, floating:0, onworkspace:w[t1]"
-        "rounding 10, floating:0, onworkspace:w[t1]"
-        "bordersize 2, floating:0, onworkspace:w[tg1]"
-        "rounding 10, floating:0, onworkspace:w[tg1]"
-        "bordersize 2, floating:0, onworkspace:f[1]"
-        "rounding 10, floating:0, onworkspace:f[1]"
-
-        # Remove context menu transparency in chromium based apps
-        "opaque,class:^()$,title:^()$"
-        "noshadow,class:^()$,title:^()$"
-        "noblur,class:^()$,title:^()$"
+        "bordersize 5, floating:0, onworkspace:w[t1]"
+        "rounding 15, floating:0, onworkspace:w[t1]"
+        "bordersize 5, floating:0, onworkspace:w[tg1]"
+        "rounding 15, floating:0, onworkspace:w[tg1]"
+        "bordersize 5, floating:0, onworkspace:f[1]"
+        "rounding 15, floating:0, onworkspace:f[1]"
       ];
 
       # gaps when only
       workspace = [
-        "w[t1], gapsout:2, gapsin:0"
-        "w[tg1], gapsout:2, gapsin:0"
-        "f[1], gapsout:2, gapsin:0"
+        "w[t1], gapsout:5, gapsin:0"
+        "w[tg1], gapsout:5, gapsin:0"
+        "f[1], gapsout:5, gapsin:0"
       ];
     };
 
     extraConfig = "
-      monitor=,preferred,auto,auto
+      monitor=,preferred,auto, 1
       xwayland {
-        force_zero_scaling = true
+        force_zero_scaling = false
       }
     ";
   };

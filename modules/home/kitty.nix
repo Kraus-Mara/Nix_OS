@@ -7,7 +7,7 @@
 
     font = {
       name = "Fira Code Nerd Font Light";
-      size = if (host == "laptop") then 12 else 16;
+      size = 18;
     };
 
     settings = {
